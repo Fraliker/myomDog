@@ -73,7 +73,7 @@ export class MyApp {
       },
       ios: {
           alert: 'true',
-          badge: true,
+          badge: 'true',
           sound: 'false'
       },
       windows: {}
@@ -110,4 +110,3 @@ export class MyApp {
 
   }
 }
-

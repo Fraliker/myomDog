@@ -14,7 +14,7 @@
         <button ion-item (click)="selectDog(dog)">
         <!--<ion-input type="text" hidden [(ngModel)]="selectedDog" >{{dog.key}}</ion-input>-->
           <ion-avatar item-start>
-            <img src="../../assets/img/myom_logo-{{dog.value.gender}}.png">
+            <img src="assets/img/myom_logo-{{dog.value.gender}}.png">
           </ion-avatar>
           <h2 class="dog-name">{{dog.value.name}}</h2>
           <h3 class="dog-birth"><br>생일 {{dog.value.birth | date: "M월 d일"}}</h3>
