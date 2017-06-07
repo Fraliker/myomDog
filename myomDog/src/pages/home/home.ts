@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { ToastController, NavParams, ViewController, NavController, AlertController, ModalController } from 'ionic-angular';
+import { ToastController, NavParams, ViewController, NavController, AlertController, ModalController, LoadingController } from 'ionic-angular';
 import { ManageService } from '../../providers/manage-service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../../providers/auth-service';
@@ -26,8 +26,9 @@ export class HomePage {
     myDateSec: Number = Date.now();
 
     constructor(public datePipe: DatePipe, public navCtrl: NavController, public authService: AuthService, public manageService: ManageService,
-                private db: AngularFireDatabase, public alertCtrl: AlertController, public modalCtrl: ModalController, public _viewCtrl: ViewController)
+                private db: AngularFireDatabase, public alertCtrl: AlertController, public modalCtrl: ModalController, public _viewCtrl: ViewController, public loadingCtrl:LoadingController)
     {
+      this.presentLoadingDefault();
       this.today = Date.now();
       this.userKey = manageService.userKey;
       this.mygroups = db.list('/userData/'+this.userKey+'/groups');
@@ -45,6 +46,23 @@ export class HomePage {
 
     isNull(){
       return this.mygroups==null
+    }
+
+    presentLoadingDefault() {
+      let loading = this.loadingCtrl.create({
+        content: 'Loading Data . . .'
+      });
+
+      loading.onDidDismiss(() => {
+        console.log('Dismissed loading');
+      });
+
+      loading.present();
+
+      setTimeout(() => {
+        loading.dismiss();
+      }, 5000);
+
     }
 
     ionViewDidEnter(){

@@ -234,11 +234,11 @@ getTime() 은 밀리세컨드 단위로 변환하는 함수이기 때문에 이 
             for(let i=0; i<7; i++){
               console.log(new Date(history.time).getDay());
               if(this.days[new Date(history.time).getDay()]==labels[i]){
-                cnt[i] += history.content;
+                cnt[i] += parseInt(history.content);
               }
             }
           }
-          
+
         })
         resolve(cnt);
       }, err=>{
@@ -323,7 +323,7 @@ getTime() 은 밀리세컨드 단위로 변환하는 함수이기 때문에 이 
         shots.forEach(history=>{
           let x = new Date(history.time);
           if(x.getMonth()==month){
-            data[x.getDate()-1] += history.content;
+            data[x.getDate()-1] += parseInt(history.content);
           }
         })
         resolve(data);
@@ -389,7 +389,7 @@ getTime() 은 밀리세컨드 단위로 변환하는 함수이기 때문에 이 
           if(x.getFullYear()==year && (0 <= month - x.getMonth() && month - x.getMonth() <= 3 )){
             let day = x.getDate();
             let pos = Math.floor(day/7);
-            data[(x.getMonth()-month+3)*4 + pos] += history.content;
+            data[(x.getMonth()-month+3)*4 + pos] += parseInt(history.content);
           }
         })
         resolve(data);
